@@ -51,12 +51,12 @@ jobs:
             $ErrorActionPreference = 'Stop'
             function ThrowOnFailure($Msg) { if (-not $?) { throw $Msg } }
             
-            pytest --disable-warnings
+            pytest --disable-warnings --junitxml=~/reports/test-results.xml
             ThrowOnFailure "Python test failed!"
             flake8 --max-line-length=120 --ignore=PT009,E203,W503,W601
       
       - store_test_results:
-          path: test-results
+          path: ~/reports
       
   
   # Linux integration 
