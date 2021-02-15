@@ -54,6 +54,10 @@ jobs:
             pytest --disable-warnings
             ThrowOnFailure "Python test failed!"
             flake8 --max-line-length=120 --ignore=PT009,E203,W503,W601
+      
+      - store_test_results:
+          path: test-results
+      
   
   # Linux integration 
   Integration-on-linux:
