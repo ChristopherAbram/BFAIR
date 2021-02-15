@@ -50,6 +50,9 @@ jobs:
             Set-StrictMode -Version Latest
             $ErrorActionPreference = 'Stop'
             $PSDefaultParameterValues['*:ErrorAction']='Stop'
+            function ThrowOnNativeFailure {
+              if (-not $?) { throw 'Native Failure' }
+            }
             pytest --disable-warnings
             # if (-not $?) { throw "Python test failed!" }
             flake8 --max-line-length=120 --ignore=PT009,E203,W503,W601
